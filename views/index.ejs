@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<script type="text/javascript" src="scripts/core.js"></script>
+		<script type="text/javascript" src="scripts/enc-base64.js"></script>
+		<script type="text/javascript" src="scripts/pbkdf2.js"></script>
+		<script type="text/javascript" src="scripts/aes.js"></script>
+		<script type="text/javascript" src="scripts/qrcode.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+	</head>
+	<body>
+
+		<div class="ch-info-wrap">
+			<div class="ch-info" id="ch-info">
+				<div class="ch-info-front">
+					<div class="qrcode" id="qrcode"></div>
+				</div>
+				<div class="ch-info-back">
+					<table class="data" id="data"></table>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="scripts/qrpass.js"></script>
+	</body>
+</html>
