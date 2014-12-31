@@ -53,7 +53,7 @@ function displayEntry(entry) {
 		datatable.appendChild(line);
 		name = document.createElement("td");
 		line.appendChild(name);
-		name.innerHTML = "login";
+		name.innerHTML = "Username";
 		value = document.createElement("td");
 		line.appendChild(value);
 		value.innerHTML = entry.userName;
@@ -64,7 +64,7 @@ function displayEntry(entry) {
 		datatable.appendChild(line);
 		name = document.createElement("td");
 		line.appendChild(name);
-		name.innerHTML = "password";
+		name.innerHTML = "Password";
 		value = document.createElement("td");
 		line.appendChild(value);
 		value.innerHTML = entry.password;
