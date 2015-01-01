@@ -25,7 +25,7 @@ app.put('/pipe', function (req) {
 
 // start server
 var server = http.createServer(app);
-server.listen(1337);
+server.listen(app.get('port'));
 io.listen(server);
 
 // socket.io sockets
