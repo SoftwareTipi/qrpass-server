@@ -6,7 +6,7 @@ var express = require("express"),
 	 http = require('http');
 
 // middleware
-app.use(bodyParser());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'static')));
 
 // configure app
