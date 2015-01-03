@@ -1,3 +1,4 @@
+/* global require, __dirname, process, console */
 var express = require("express"),
 	 app = express(),
 	 bodyParser = require('body-parser'),
