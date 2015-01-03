@@ -25,6 +25,7 @@ function arrayToString(array) {
 }
 
 function makeQRCode() {
+	qrcode.clear();
 	qrcode.makeCode(clientID + "\n" + salt + "\n" + iv + "\n" + passPhrase);
 	qrcodediv.style.display = "block";
 }
@@ -90,10 +91,6 @@ function processResponse(response) {
 
 function startConn() {
 	var socket = io.connect(window.location.host);
-	socket.on('qrpass_id', function (data) {
-		clientID = data;
-		makeQRCode();
-	});
 	socket.on('qrpass_id', function (data) {
 		clientID = data;
 		makeQRCode();
