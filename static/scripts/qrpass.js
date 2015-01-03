@@ -1,8 +1,6 @@
-/* global window,document,QRCode,sessionID,ActiveXObject,XMLHttpRequest,alert,console,setTimeout,Uint32Array,CryptoJS */
-var qrcodediv = document.getElementById("qrcode");
+/* global window,document,QRCode,sessionID,ActiveXObject,XMLHttpRequest,alert,console,setTimeout,Uint32Array,CryptoJS,io */
 var datatable = document.getElementById("data");
-var qrcode = new QRCode("qrcode");
-var salt, iv, key, passPhrase, clientID;
+var key, iv;
 
 // Main logic
 function getRandomString(size) {
@@ -24,10 +22,29 @@ function arrayToString(array) {
 	return result;
 }
 
-function makeQRCode() {
-	qrcode.clear();
-	qrcode.makeCode(clientID + "\n" + salt + "\n" + iv + "\n" + passPhrase);
-	qrcodediv.style.display = "block";
+function makeQRCode(clientID) {
+	if(clientID)
+		this.clientID = clientID;
+	// params for encryption
+	var salt = CryptoJS.lib.WordArray.random(32);
+	iv = CryptoJS.lib.WordArray.random(16);
+	var passPhrase = getRandomString(16);
+	// code generation
+	if(this.code) {
+		this.code.clear();
+		this.code.makeCode(this.clientID + "\n" + salt + "\n" + iv + "\n" + passPhrase);
+	}
+	else
+		this.code = new QRCode("qrcode", {
+			text: clientID + "\n" + salt + "\n" + iv + "\n" + passPhrase,
+			width: 256,
+			height: 256,
+			correctLevel : QRCode.CorrectLevel.M
+		});
+	key = CryptoJS.PBKDF2(
+		passPhrase,
+		salt,
+		{ keySize: 8, iterations: 1000 });
 }
 
 function decrypt(cipherText) {
@@ -91,9 +108,8 @@ function processResponse(response) {
 
 function startConn() {
 	var socket = io.connect(window.location.host);
-	socket.on('qrpass_id', function (data) {
-		clientID = data;
-		makeQRCode();
+	socket.on('qrpass_id', function (id) {
+		makeQRCode(id);
 	});
 	socket.on('qrpass_data', function (data) {
 		processResponse(data);
@@ -101,16 +117,6 @@ function startConn() {
 }
 
 function start() {
-	"use strict";
-	// params for encryption
-	salt = CryptoJS.lib.WordArray.random(32);
-	iv = CryptoJS.lib.WordArray.random(16);
-	passPhrase = getRandomString(16);
-	key = CryptoJS.PBKDF2(
-		passPhrase,
-		salt,
-		{ keySize: 8, iterations: 1000 });
-
 	startConn();
 }
 
