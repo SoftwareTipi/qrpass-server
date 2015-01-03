@@ -1,52 +1,39 @@
 /* global window,document,QRCode,sessionID,ActiveXObject,XMLHttpRequest,alert,console,setTimeout,Uint32Array,CryptoJS,io */
 var datatable = document.getElementById("data");
 var key, iv;
-
-// Main logic
+// Helpers
 function getRandomString(size) {
-	var text = "";
-	var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-	for( var i=0; i < size; i++ )
-		text += possible.charAt(Math.random() * possible.length);
-
+	var text = "", possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	for( var i=0; i < size; i++ ) text += possible.charAt(Math.random() * possible.length);
 	return text;
 }
-
 function arrayToString(array) {
-	var i;
-	var result = "";
-	for (i = 0; i < array.length; i += 1) {
+	var i, result = "";
+	for (i = 0; i < array.length; i += 1)
 		result += array[i].toString(16);
-	}
 	return result;
 }
-
 function makeQRCode(clientID) {
 	if(clientID)
-		this.clientID = clientID;
-	// params for encryption
+		makeQRCode.clientID = clientID;
 	var salt = CryptoJS.lib.WordArray.random(32);
 	iv = CryptoJS.lib.WordArray.random(16);
 	var passPhrase = getRandomString(16);
-	// code generation
-	if(this.code) {
-		this.code.clear();
-		this.code.makeCode(this.clientID + "\n" + salt + "\n" + iv + "\n" + passPhrase);
-	}
-	else
-		this.code = new QRCode("qrcode", {
-			text: clientID + "\n" + salt + "\n" + iv + "\n" + passPhrase,
+	if(makeQRCode.code) {
+		makeQRCode.code.clear();
+	}	else {
+		makeQRCode.code = new QRCode("qrcode", {
 			width: 256,
 			height: 256,
 			correctLevel : QRCode.CorrectLevel.M
 		});
+	}
+	makeQRCode.code.makeCode(makeQRCode.clientID + "\n" + salt + "\n" + iv + "\n" + passPhrase);
 	key = CryptoJS.PBKDF2(
 		passPhrase,
 		salt,
 		{ keySize: 8, iterations: 1000 });
 }
-
 function decrypt(cipherText) {
 	var cipherParams = CryptoJS.lib.CipherParams.create({
 		ciphertext: CryptoJS.enc.Base64.parse(cipherText)});
@@ -54,7 +41,6 @@ function decrypt(cipherText) {
 		cipherParams,
 		key,
 		{ iv: iv });
-
 	return decrypted.toString(CryptoJS.enc.Utf8);
 }
 
@@ -76,7 +62,6 @@ function displayEntry(entry) {
 		line.appendChild(value);
 		value.innerHTML = entry.userName;
 	}
-
 	if ("password" in entry) {
 		line = document.createElement("tr");
 		datatable.appendChild(line);
@@ -87,10 +72,8 @@ function displayEntry(entry) {
 		line.appendChild(value);
 		value.innerHTML = entry.password;
 	}
-
 	document.getElementById("ch-info").classList.add("ch-info-rotated");
 }
-
 function processResponse(response) {
 	if (response !== "") {
 		try {
@@ -99,25 +82,16 @@ function processResponse(response) {
 			if ("credentials" in dataJSON) {
 				displayEntry(dataJSON.credentials);
 			}
-		}
-		catch(e) {
+		} catch(e) {
 			console.warn(e.message);
 		}
 	}
 }
-
 function startConn() {
 	var socket = io.connect(window.location.host);
-	socket.on('qrpass_id', function (id) {
-		makeQRCode(id);
-	});
-	socket.on('qrpass_data', function (data) {
-		processResponse(data);
-	});
+	socket.on('qrpass_id', makeQRCode);
+	socket.on('qrpass_data', processResponse);
 }
-
-function start() {
+window.onload = function() {
 	startConn();
-}
-
-start();
+};
