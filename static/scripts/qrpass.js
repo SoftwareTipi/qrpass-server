@@ -72,7 +72,7 @@ function makeCopyButton(id) {
 	var client = new ZeroClipboard( document.getElementById(id) );
 	client.on( "ready", function( readyEvent ) {
 		client.on( "aftercopy", function( event ) {
-			event.target.setAttribute("title", "Coppied!");
+			event.target.innerHTML = "Coppied!";
 		} );
 	} );
 }
