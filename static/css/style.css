@@ -10,28 +10,32 @@ body {
 /* animation */
 .ch-info-wrap {
 	position: absolute;
-	width: 256px;
-	height: 256px;
-	perspective: 800px;
-	transition: all 0.6s ease-in-out;
 	top: 50%;
 	left: 50%;
 	margin: -128px 0 0 -128px;
+	width: 256px;
+	height: 256px;
+	transition: all 0.6s ease-in-out;
+
+	perspective: 800px;
 /*	background: #f9f9f9; tak samo jak tło!*/
 }
 .ch-info {
-	box-shadow: 0 0 20px #888;
 	position: absolute;
 	width: 256px;
 	height: 256px;
+	box-shadow: 0 0 20px #888;
 	transition: all 0.6s ease;
+	transform: rotate3d(0,0,1,45deg);
+
 	transform-style: preserve-3d;
 }
 .ch-info > div {
-	display: block;
 	position: absolute;
+	display: block;
 	width: 100%;
 	height: 100%;
+
 	backface-visibility: hidden;
 }
 .ch-info .ch-info-back {
@@ -46,6 +50,6 @@ table.data {
 	margin: auto;
 }
 table.data > tr > td:first-child {
-	font-weight: bold;
 	text-align: right;
+	font-weight: bold;
 }

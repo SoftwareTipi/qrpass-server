@@ -1,4 +1,4 @@
-/* global window,document,QRCode,sessionID,ActiveXObject,XMLHttpRequest,alert,console,setTimeout,Uint32Array,CryptoJS,io */
+/* global window,document,QRCode,sessionID,ActiveXObject,XMLHttpRequest,alert,console,setTimeout,Uint32Array,CryptoJS,io,ZeroClipboard */
 var datatable = document.getElementById("data");
 var key, iv;
 // Helpers
@@ -45,32 +45,13 @@ function decrypt(cipherText) {
 }
 
 function displayEntry(entry) {
-	while (datatable.hasChildNodes()) {
-		var child = datatable.firstChild();
-		while (child.hasChildNodes())
-			child.removeChild(child.firstChild);
-		datatable.removeChild(child);
-	}
-	var line,name,value;
 	if ("userName" in entry) {
-		line = document.createElement("tr");
-		datatable.appendChild(line);
-		name = document.createElement("td");
-		line.appendChild(name);
-		name.innerHTML = "Username";
-		value = document.createElement("td");
-		line.appendChild(value);
-		value.innerHTML = entry.userName;
+		document.getElementById("copy-button-login").
+			setAttribute("data-clipboard-text", entry.userName);
 	}
 	if ("password" in entry) {
-		line = document.createElement("tr");
-		datatable.appendChild(line);
-		name = document.createElement("td");
-		line.appendChild(name);
-		name.innerHTML = "Password";
-		value = document.createElement("td");
-		line.appendChild(value);
-		value.innerHTML = entry.password;
+		document.getElementById("copy-button-login").
+			setAttribute("data-clipboard-text", entry.userName);
 	}
 	document.getElementById("ch-info").classList.add("ch-info-rotated");
 }
@@ -87,11 +68,25 @@ function processResponse(response) {
 		}
 	}
 }
-function startConn() {
+function makeCopyButton(id) {
+	var client = new ZeroClipboard( document.getElementById(id) );
+	client.on( "ready", function( readyEvent ) {
+		// alert( "ZeroClipboard SWF is ready!" );
+		client.on( "aftercopy", function( event ) {
+			// `this` === `client`
+			// `event.target` === the element that was clicked
+			event.target.style.display = "none";
+			alert("Copied text to clipboard: " + event.data["text/plain"] );
+		} );
+	} );
+}
+function start() {
 	var socket = io.connect(window.location.host);
 	socket.on('qrpass_id', makeQRCode);
 	socket.on('qrpass_data', processResponse);
+	makeCopyButton("copy-button-login");
+	makeCopyButton("copy-button-password");
 }
 window.onload = function() {
-	startConn();
+	start();
 };
