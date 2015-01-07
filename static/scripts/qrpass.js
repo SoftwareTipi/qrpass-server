@@ -50,8 +50,8 @@ function displayEntry(entry) {
 			setAttribute("data-clipboard-text", entry.userName);
 	}
 	if ("password" in entry) {
-		document.getElementById("copy-button-login").
-			setAttribute("data-clipboard-text", entry.userName);
+		document.getElementById("copy-button-password").
+			setAttribute("data-clipboard-text", entry.password);
 	}
 	document.getElementById("ch-info").classList.add("ch-info-rotated");
 }
