@@ -46,7 +46,7 @@ function decrypt(cipherText) {
 
 function displayEntry(entry) {
 	if ("userName" in entry) {
-		document.getElementById("copy-button-login").
+		document.getElementById("copy-button-userName").
 			setAttribute("data-clipboard-text", entry.userName);
 	}
 	if ("password" in entry) {
@@ -80,7 +80,7 @@ function start() {
 	var socket = io.connect(window.location.host);
 	socket.on('qrpass_id', makeQRCode);
 	socket.on('qrpass_data', processResponse);
-	makeCopyButton("copy-button-login");
+	makeCopyButton("copy-button-userName");
 	makeCopyButton("copy-button-password");
 }
 window.onload = function() {
