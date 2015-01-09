@@ -31,6 +31,8 @@ function makeQRCode(clientID) {
 		makeQRCode.code.clear();
 	}	else {
 		makeQRCode.code = new QRCode("qrcode", {
+			colorDark: '#2e241e',
+			colorLight : '#f2f2f2',
 			width: 256,
 			height: 256,
 			correctLevel : QRCode.CorrectLevel.M
@@ -68,7 +70,7 @@ function displayEntry(entry) {
 		element.style.display = "block";
 		makeCopyButton(element);
 	}
-	document.getElementById("ch-info").className += "\ ch-info-rotated";
+	document.getElementById("modal-1").className += "\ md-show";
 }
 function processData(response) {
 	if (response !== "") {

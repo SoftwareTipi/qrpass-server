@@ -6,8 +6,10 @@ body {
 	left: 0;
 	margin: 0;
 	padding: 0;
+	font-family: Calibri, Arial, sans-serif;
 }
-/* animation */
+/* qrcode */
+
 .ch-info-wrap {
 	position: absolute;
 	top: 50%;
@@ -16,32 +18,156 @@ body {
 	width: 256px;
 	height: 256px;
 	-webkit-transition: all 0.6s ease-in-out;
-	-moz-transition:    all 0.6s ease-in-out;
-	-o-transition:      all 0.6s ease-in-out;
-	transition:         all 0.6s ease-in-out;
-
-	perspective: 800px;
-/*	background: #f9f9f9; tak samo jak tło!*/
+	-moz-transition: all 0.6s ease-in-out;
+	-o-transition: all 0.6s ease-in-out;
+	transition: all 0.6s ease-in-out;
 }
 .ch-info {
 	position: absolute;
 	width: 256px;
 	height: 256px;
-	box-shadow: 0 0 20px #888;
 	-webkit-transition: all 0.6s ease;
-	-moz-transition:    all 0.6s ease;
-	-o-transition:      all 0.6s ease;
-	transition:         all 0.6s ease;
-	-webkit-transform: rotate3d(0,0,1,45deg);
-	-moz-transform:    rotate3d(0,0,1,45deg);
-	-ms-transform:     rotate3d(0,0,1,45deg);
-	-o-transform:      rotate3d(0,0,1,45deg);
-	transform:         rotate3d(0,0,1,45deg);
+	-moz-transition: all 0.6s ease;
+	-o-transition: all 0.6s ease;
+	transition: all 0.6s ease;
+	-webkit-transform: rotate3d(0, 0, 1, 45deg);
+	-moz-transform: rotate3d(0, 0, 1, 45deg);
+	-ms-transform: rotate3d(0, 0, 1, 45deg);
+	-o-transform: rotate3d(0, 0, 1, 45deg);
+	transform: rotate3d(0, 0, 1, 45deg);
 }
 .ch-info-hide {
-	-webkit-transform: scale(0.001) rotate3d(0,0,1,-45deg);
-	-moz-transform:    scale(0.001) rotate3d(0,0,1,-45deg);
-	-ms-transform:     scale(0.001) rotate3d(0,0,1,-45deg);
-	-o-transform:      scale(0.001) rotate3d(0,0,1,-45deg);
-	transform:         scale(0.001) rotate3d(0,0,1,-45deg);
+	-webkit-transform: scale(0.001) rotate3d(0, 0, 1, -45deg);
+	-moz-transform: scale(0.001) rotate3d(0, 0, 1, -45deg);
+	-ms-transform: scale(0.001) rotate3d(0, 0, 1, -45deg);
+	-o-transform: scale(0.001) rotate3d(0, 0, 1, -45deg);
+	transform: scale(0.001) rotate3d(0, 0, 1, -45deg);
+}
+/* modal window */
+
+.md-modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	z-index: 2000;
+	visibility: hidden;
+	min-width: 320px;
+	max-width: 630px;
+	height: auto;
+	transform: translateX(-50%) translateY(-50%);
+
+	backface-visibility: hidden;
+}
+.md-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	visibility: hidden;
+	width: 100%;
+	height: 100%;
+	background: rgba(191, 183, 176, 0.9);
+	opacity: 0;
+	transition: all 0.3s;
+}
+.md-content {
+	padding: 30px;
+	border-radius: 5px;
+	background: #8C8177;
+	text-align: center;
+}
+.md-content > button {
+	margin: 5px;
+	padding: 6px 8px;
+	border: none;
+	border-radius: 4px;
+	background: #574536;
+	color: #F2F2F2;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+.md-show {
+	visibility: visible;
+}
+.md-show ~ .md-overlay {
+	visibility: visible;
+	opacity: 1;
+}
+.md-perspective,
+.md-perspective body {
+	overflow: hidden;
+	height: 100%;
+}
+.md-perspective body {
+	background: #3D3E44;
+
+	perspective: 600px;
+}
+.container {
+	min-height: 100%;
+	background: #F2F2F2;
+}
+/* Modal window effect */
+
+.md-show.md-effect ~ .container {
+	overflow: hidden;
+	height: 100%;
+}
+.md-show.md-effect ~ .md-overlay {
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	transition: all 0.5s;
+}
+.md-show.md-effect ~ .container,
+.md-show.md-effect ~ .md-overlay {
+	-webkit-transform-origin: 50% 100%;
+	-moz-transform-origin: 50% 100%;
+	transform-origin: 50% 100%;
+	-webkit-animation: OpenTop 0.5s forwards ease-in;
+	-moz-animation: OpenTop 0.5s forwards ease-in;
+	animation: OpenTop 0.5s forwards ease-in;
+
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+@-webkit-keyframes OpenTop {
+	50% {
+		-webkit-transform: rotateX(10deg);
+		-webkit-animation-timing-function: ease-out;
+	}
+}
+@-moz-keyframes OpenTop {
+	50% {
+		-moz-transform: rotateX(10deg);
+		-moz-animation-timing-function: ease-out;
+	}
+}
+@keyframes OpenTop {
+	50% {
+		transform: rotateX(10deg);
+		animation-timing-function: ease-out;
+	}
+}
+.md-effect .md-content {
+	opacity: 0;
+	-webkit-transform: translateY(-200%);
+	-moz-transform: translateY(-200%);
+	-ms-transform: translateY(-200%);
+	transform: translateY(-200%);
+}
+.md-show.md-effect .md-content {
+	opacity: 1;
+	-webkit-transition: all 0.5s 0.1s;
+	-moz-transition: all 0.5s 0.1s;
+	transition: all 0.5s 0.1s;
+	-webkit-transform: translateY(0);
+	-moz-transform: translateY(0);
+	-ms-transform: translateY(0);
+	transform: translateY(0);
+}
+@media screen and (max-width: 32em) {
+	body {
+		font-size: 75%;
+	}
 }
