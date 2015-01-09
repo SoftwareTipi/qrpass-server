@@ -14,9 +14,14 @@ a {
 	text-decoration: none;
 }
 @font-face {
-  font-family: 'icons';
-  src: url('/fonts/icomoon.ttf');
-  src: url('/fonts/icomoon.ttf') format('truetype');
+	font-family: 'icons';
+	src:url('/fonts/icomoon.eot');
+	src: url('/fonts/icomoon.eot') format('embedded-opentype'),
+		url('/fonts/icomoon.woff') format('woff'),
+		url('/fonts/icomoon.ttf') format('truetype'),
+		url('/fonts/icomoon.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
 }
 .icon-android {
 	position: absolute;
