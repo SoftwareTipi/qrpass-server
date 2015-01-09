@@ -30,6 +30,9 @@ body {
 
 	transform-style: preserve-3d;
 }
+.ch-info-hide {
+	transform: scale(0.001) rotate3d(0,0,1,-45deg);
+}
 .ch-info > div {
 	position: absolute;
 	display: block;

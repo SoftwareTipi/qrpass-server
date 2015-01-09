@@ -37,6 +37,8 @@ function makeQRCode(clientID) {
 		});
 	}
 	makeQRCode.code.makeCode(makeQRCode.clientID + "\n" + salt + "\n" + iv + "\n" + passPhrase);
+	document.getElementById("ch-info").className =
+		document.getElementById("ch-info").className.replace(' ch-info-hide','');
 	key = CryptoJS.PBKDF2(
 		passPhrase,
 		salt,
@@ -66,7 +68,7 @@ function displayEntry(entry) {
 		element.style.display = "block";
 		makeCopyButton(element);
 	}
-	document.getElementById("ch-info").classList.add("ch-info-rotated");
+	document.getElementById("ch-info").className += "\ ch-info-rotated";
 }
 function processData(response) {
 	if (response !== "") {
