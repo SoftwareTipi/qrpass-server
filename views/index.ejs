@@ -1,29 +1,34 @@
 <!doctype html>
 <html>
-	<head>
-		<meta name="robots" content="noindex">
-		<title>QRPass</title>
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-	</head>
-	<body>
-	<a href="apk/android.apk">Download android apk</a>
-		<div class="ch-info-wrap">
-			<div class="ch-info ch-info-hide" id="ch-info">
-				<div class="ch-info-front">
-					<div class="qrcode" id="qrcode"></div>
-				</div>
-				<div class="ch-info-back">
-					<button style="display: none" id="copy-button-userName">Copy username to Clipboard</button>
-					<button style="display: none" id="copy-button-password">Copy password to Clipboard</button>
-				</div>
-			</div>
+<head>
+	<meta name="robots" content="noindex">
+	<title>QRPass</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+<a href="apk/android.apk">Download android apk</a>
+	<div class="ch-info-wrap">
+		<div class="ch-info ch-info-hide" id="ch-info">
+				<div class="qrcode" id="qrcode"></div>
 		</div>
-		<script type="text/javascript" src="/scripts/aes.js"></script>
-		<script type="text/javascript" src="/scripts/enc-base64.js"></script>
-		<script type="text/javascript" src="/scripts/pbkdf2.js"></script>
-		<script type="text/javascript" src="/scripts/qrcode.min.js"></script>
-		<script src="/socket.io/socket.io.js"></script>
-		<script type="text/javascript" src="/ZeroClipboard.js"></script>
-		<script type="text/javascript" src="scripts/qrpass.js"></script>
-	</body>
+	</div>
+
+	<div class="md-modal md-effect-1" id="modal-1">
+		<div class="md-content">
+			<button style="display: none" id="copy-button-userName">Copy username to Clipboard</button>
+			<button style="display: none" id="copy-button-password">Copy password to Clipboard</button>
+			<button class="md-close">Close me!</button>
+		</div>
+	</div>
+	<div class="md-overlay"></div>
+
+
+	<script type="text/javascript" src="/scripts/aes.js"></script>
+	<script type="text/javascript" src="/scripts/enc-base64.js"></script>
+	<script type="text/javascript" src="/scripts/pbkdf2.js"></script>
+	<script type="text/javascript" src="/scripts/qrcode.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="/ZeroClipboard.js"></script>
+	<script type="text/javascript" src="scripts/qrpass.js"></script>
+</body>
 </html>
