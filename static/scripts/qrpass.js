@@ -61,13 +61,13 @@ function displayEntry(entry) {
 	if ("userName" in entry) {
 		element = document.getElementById("copy-button-userName");
 		element.setAttribute("data-clipboard-text", entry.userName);
-		element.style.display = "block";
+		element.style.display = "inline-block";
 		makeCopyButton(element);
 	}
 	if ("password" in entry) {
 		element = document.getElementById("copy-button-password");
 		element.setAttribute("data-clipboard-text", entry.password);
-		element.style.display = "block";
+		element.style.display = "inline-block";
 		makeCopyButton(element);
 	}
 	document.getElementById("modal-1").className += "\ md-show";
