@@ -13,6 +13,14 @@ function arrayToString(array) {
 		result += array[i].toString(16);
 	return result;
 }
+function makeCopyButton(element) {
+	var client = new ZeroClipboard(element);
+	client.on( "ready", function(readyEvent) {
+		client.on( "aftercopy", function(event) {
+			event.target.innerHTML = "Coppied!";
+		} );
+	} );
+}
 function makeQRCode(clientID) {
 	if(clientID)
 		makeQRCode.clientID = clientID;
@@ -43,19 +51,24 @@ function decrypt(cipherText) {
 		{ iv: iv });
 	return decrypted.toString(CryptoJS.enc.Utf8);
 }
-
+// Main logic
 function displayEntry(entry) {
+	var element;
 	if ("userName" in entry) {
-		document.getElementById("copy-button-userName").
-			setAttribute("data-clipboard-text", entry.userName);
+		element = document.getElementById("copy-button-userName");
+		element.setAttribute("data-clipboard-text", entry.userName);
+		element.style.display = "block";
+		makeCopyButton(element);
 	}
 	if ("password" in entry) {
-		document.getElementById("copy-button-password").
-			setAttribute("data-clipboard-text", entry.password);
+		element = document.getElementById("copy-button-password");
+		element.setAttribute("data-clipboard-text", entry.password);
+		element.style.display = "block";
+		makeCopyButton(element);
 	}
 	document.getElementById("ch-info").classList.add("ch-info-rotated");
 }
-function processResponse(response) {
+function processData(response) {
 	if (response !== "") {
 		try {
 			response = response.replace("\n","");
@@ -68,20 +81,10 @@ function processResponse(response) {
 		}
 	}
 }
-function makeCopyButton(id) {
-	var client = new ZeroClipboard( document.getElementById(id) );
-	client.on( "ready", function( readyEvent ) {
-		client.on( "aftercopy", function( event ) {
-			event.target.innerHTML = "Coppied!";
-		} );
-	} );
-}
 function start() {
 	var socket = io.connect(window.location.host);
 	socket.on('qrpass_id', makeQRCode);
-	socket.on('qrpass_data', processResponse);
-	makeCopyButton("copy-button-userName");
-	makeCopyButton("copy-button-password");
+	socket.on('qrpass_data', processData);
 }
 window.onload = function() {
 	start();

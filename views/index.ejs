@@ -4,12 +4,6 @@
 		<meta name="robots" content="noindex">
 		<title>QRPass</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<script type="text/javascript" src="/scripts/aes.js"></script>
-		<script type="text/javascript" src="/scripts/enc-base64.js"></script>
-		<script type="text/javascript" src="/scripts/pbkdf2.js"></script>
-		<script type="text/javascript" src="/scripts/qrcode.min.js"></script>
-		<script type="text/javascript" src="/ZeroClipboard.js"></script>
-		<script src="/socket.io/socket.io.js"></script>
 	</head>
 	<body>
 	<a href="apk/android.apk">Download android apk</a>
@@ -19,11 +13,17 @@
 					<div class="qrcode" id="qrcode"></div>
 				</div>
 				<div class="ch-info-back">
-					<button id="copy-button-userName" data-clipboard-text="Copy Me!" title="Click to copy me.">Copy username to Clipboard</button>
-					<button id="copy-button-password" data-clipboard-text="Copy Me!" title="Click to copy me.">Copy password to Clipboard</button>
+					<button style="display: none" id="copy-button-userName">Copy username to Clipboard</button>
+					<button style="display: none" id="copy-button-password">Copy password to Clipboard</button>
 				</div>
 			</div>
 		</div>
+		<script type="text/javascript" src="/scripts/aes.js"></script>
+		<script type="text/javascript" src="/scripts/enc-base64.js"></script>
+		<script type="text/javascript" src="/scripts/pbkdf2.js"></script>
+		<script type="text/javascript" src="/scripts/qrcode.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script type="text/javascript" src="/ZeroClipboard.js"></script>
 		<script type="text/javascript" src="scripts/qrpass.js"></script>
 	</body>
 </html>
