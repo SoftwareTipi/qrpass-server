@@ -86,6 +86,10 @@ body {
 	text-transform: uppercase;
 	font-weight: bold;
 }
+.md-content > button:hover {
+	background: #362415;
+	cursor: pointer;
+}
 .md-show {
 	visibility: visible;
 }
