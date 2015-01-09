@@ -21,6 +21,10 @@ function makeCopyButton(element) {
 		} );
 	} );
 }
+function hideModal() {
+	var modal = document.getElementById("modal-1");
+	modal.className = modal.className.replace(' md-show','');
+}
 function makeQRCode(clientID) {
 	if(clientID)
 		makeQRCode.clientID = clientID;
@@ -40,7 +44,7 @@ function makeQRCode(clientID) {
 	}
 	makeQRCode.code.makeCode(makeQRCode.clientID + "\n" + salt + "\n" + iv + "\n" + passPhrase);
 	document.getElementById("ch-info").className =
-		document.getElementById("ch-info").className.replace(' ch-info-hide','');
+		document.getElementById("ch-info").className.replace('\ ch-info-hide','');
 	key = CryptoJS.PBKDF2(
 		passPhrase,
 		salt,
