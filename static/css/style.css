@@ -9,18 +9,38 @@ body {
 	font-family: Calibri, Arial, sans-serif;
 }
 /* qrcode */
-
+@-webkit-keyframes qrAnimation {
+	from { -webkit-transform: rotate(45deg);  }
+	to   { -webkit-transform: rotate(405deg); }
+}
+@-moz-keyframes qrAnimation {
+	from { -moz-transform: rotate(45deg);  }
+	to   { -moz-transform: rotate(405deg); }
+}
+@-o-keyframes qrAnimation {
+	from { -o-transform: rotate(45deg);  }
+	to   { -o-transform: rotate(405deg); }
+}
+@keyframes qrAnimation {
+	from { transform: rotate(45deg);  }
+	to   { transform: rotate(405deg); }
+}
 .ch-info-wrap {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	margin: -128px 0 0 -128px;
+	margin: 0;
 	width: 256px;
 	height: 256px;
 	-webkit-transition: all 0.6s ease-in-out;
 	-moz-transition: all 0.6s ease-in-out;
 	-o-transition: all 0.6s ease-in-out;
 	transition: all 0.6s ease-in-out;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	-o-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
 }
 .ch-info {
 	position: absolute;
@@ -35,6 +55,10 @@ body {
 	-ms-transform: rotate3d(0, 0, 1, 45deg);
 	-o-transform: rotate3d(0, 0, 1, 45deg);
 	transform: rotate3d(0, 0, 1, 45deg);
+	-webkit-animation: qrAnimation linear 50s infinite;
+	-moz-animation: qrAnimation linear 50s infinite;
+	-o-animation: qrAnimation linear 50s infinite;
+	animation: qrAnimation linear 50s infinite;
 }
 .ch-info-hide {
 	-webkit-transform: scale(0.001) rotate3d(0, 0, 1, -45deg);
@@ -44,7 +68,6 @@ body {
 	transform: scale(0.001) rotate3d(0, 0, 1, -45deg);
 }
 /* modal window */
-
 .md-modal {
 	position: fixed;
 	top: 50%;
