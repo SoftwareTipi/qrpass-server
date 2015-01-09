@@ -43,8 +43,8 @@ function makeQRCode(clientID) {
 		});
 	}
 	makeQRCode.code.makeCode(makeQRCode.clientID + "\n" + salt + "\n" + iv + "\n" + passPhrase);
-	document.getElementById("ch-info").className =
-		document.getElementById("ch-info").className.replace('\ ch-info-hide','');
+	document.getElementById("qrcode").className =
+		document.getElementById("qrcode").className.replace('\ qrcode-hide','');
 	key = CryptoJS.PBKDF2(
 		passPhrase,
 		salt,

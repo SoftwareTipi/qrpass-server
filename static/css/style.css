@@ -9,23 +9,7 @@ body {
 	font-family: Calibri, Arial, sans-serif;
 }
 /* qrcode */
-@-webkit-keyframes qrAnimation {
-	from { -webkit-transform: rotate(45deg);  }
-	to   { -webkit-transform: rotate(405deg); }
-}
-@-moz-keyframes qrAnimation {
-	from { -moz-transform: rotate(45deg);  }
-	to   { -moz-transform: rotate(405deg); }
-}
-@-o-keyframes qrAnimation {
-	from { -o-transform: rotate(45deg);  }
-	to   { -o-transform: rotate(405deg); }
-}
-@keyframes qrAnimation {
-	from { transform: rotate(45deg);  }
-	to   { transform: rotate(405deg); }
-}
-.ch-info-wrap {
+.qrcode-wrap {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -42,7 +26,7 @@ body {
 	-o-transform: translateX(-50%) translateY(-50%);
 	transform: translateX(-50%) translateY(-50%);
 }
-.ch-info {
+.qrcode {
 	position: absolute;
 	width: 256px;
 	height: 256px;
@@ -55,12 +39,8 @@ body {
 	-ms-transform: rotate3d(0, 0, 1, 45deg);
 	-o-transform: rotate3d(0, 0, 1, 45deg);
 	transform: rotate3d(0, 0, 1, 45deg);
-	-webkit-animation: qrAnimation linear 50s infinite;
-	-moz-animation: qrAnimation linear 50s infinite;
-	-o-animation: qrAnimation linear 50s infinite;
-	animation: qrAnimation linear 50s infinite;
 }
-.ch-info-hide {
+.qrcode-hide {
 	-webkit-transform: scale(0.001) rotate3d(0, 0, 1, -45deg);
 	-moz-transform: scale(0.001) rotate3d(0, 0, 1, -45deg);
 	-ms-transform: scale(0.001) rotate3d(0, 0, 1, -45deg);
@@ -77,6 +57,10 @@ body {
 	min-width: 320px;
 	max-width: 630px;
 	height: auto;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-ms-transform: translateX(-50%) translateY(-50%);
+	-o-transform: translateX(-50%) translateY(-50%);
 	transform: translateX(-50%) translateY(-50%);
 
 	backface-visibility: hidden;
