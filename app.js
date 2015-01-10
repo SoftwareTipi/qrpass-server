@@ -9,7 +9,7 @@ var express = require("express"),
 
 // middleware
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(favicon(path.join(__dirname, 'static/favicon.ico')));
+app.use(favicon(path.join(__dirname, 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'static')));
 app.use(express.static(path.join(__dirname, 'node_modules/zeroclipboard/dist')));
 
