@@ -22,7 +22,7 @@ app.get('/', function (req, res) {
 	res.render('index');
 });
 
-app.put('/pipe', function (req) {
+app.put('/pipe', function (req, res) {
 	var id = req.body.qrpass_id;
 	io.sockets.connected[id].emit('qrpass_data', req.body.qrpass_data);
 	res.sendStatus(200);
