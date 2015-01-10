@@ -20,6 +20,7 @@ app.set('views', path.join(__dirname, 'views'));
 // express routes
 app.get('/', function (req, res) {
 	res.render('index');
+	res.sendStatus(200);
 });
 
 app.put('/pipe', function (req) {
