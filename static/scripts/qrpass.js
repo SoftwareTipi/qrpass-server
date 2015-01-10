@@ -43,17 +43,17 @@ function decrypt(cipherText) {
 	return decrypted.toString(CryptoJS.enc.Utf8);
 }
 // Main logic
-function displayEntry(entry) {
+function displayCreds(creds) {
 	var element;
-	if ("userName" in entry) {
+	if ("userName" in creds) {
 		element = document.getElementById("copy-button-userName");
-		element.setAttribute("data-clipboard-text", entry.userName);
+		element.setAttribute("data-clipboard-text", creds.userName);
 		element.style.visibility = "visible";
 		makeCopyButton(element);
 	}
-	if ("password" in entry) {
+	if ("password" in creds) {
 		element = document.getElementById("copy-button-password");
-		element.setAttribute("data-clipboard-text", entry.password);
+		element.setAttribute("data-clipboard-text", creds.password);
 		element.style.visibility = "visible";
 		makeCopyButton(element);
 	}
@@ -65,7 +65,7 @@ function processData(response) {
 			response = response.replace("\n","");
 			var dataJSON = JSON.parse(decrypt(response));
 			if ("credentials" in dataJSON) {
-				displayEntry(dataJSON.credentials);
+				displayCreds(dataJSON.credentials);
 			}
 		} catch(e) {
 			console.warn(e.message);
