@@ -131,7 +131,8 @@ button.md-close {
 	font-weight: normal;
 	font-family: icons;
 }
-.md-content > button:hover {
+.md-content > button:hover,
+.md-content > button.zeroclipboard-is-hover {
 	background: #362415;
 	cursor: pointer;
 }
