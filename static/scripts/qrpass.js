@@ -1,18 +1,6 @@
-/* global window,document,QRCode,sessionID,ActiveXObject,XMLHttpRequest,alert,console,setTimeout,Uint32Array,CryptoJS,io,ZeroClipboard */
-var datatable = document.getElementById("data");
+/* global window,document,QRCode,sessionID,console,CryptoJS,io,ZeroClipboard */
 var key;
 // Helpers
-function getRandomString(size) {
-	var text = "", possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-	for( var i=0; i < size; i++ ) text += possible.charAt(Math.random() * possible.length);
-	return text;
-}
-function arrayToString(array) {
-	var i, result = "";
-	for (i = 0; i < array.length; i += 1)
-		result += array[i].toString(16);
-	return result;
-}
 function makeCopyButton(element) {
 	var client = new ZeroClipboard(element);
 	client.on( "ready", function(readyEvent) {
@@ -26,8 +14,8 @@ function hideModal() {
 	modal.className = modal.className.replace(' md-show','');
 }
 function makeQRCode(clientID) {
-	if(clientID) makeQRCode.clientID = clientID;
-	if(makeQRCode.code)
+	if (clientID) makeQRCode.clientID = clientID;
+	if (makeQRCode.code)
 		makeQRCode.code.clear();
 	else {
 		makeQRCode.code = new QRCode("qrcode", {
