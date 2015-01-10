@@ -14,14 +14,14 @@ a {
 	text-decoration: none;
 }
 @font-face {
+	font-weight: normal;
+	font-style: normal;
 	font-family: 'icons';
 	src:url('/fonts/icomoon.eot');
 	src: url('/fonts/icomoon.eot') format('embedded-opentype'),
 		url('/fonts/icomoon.woff') format('woff'),
 		url('/fonts/icomoon.ttf') format('truetype'),
 		url('/fonts/icomoon.svg') format('svg');
-	font-weight: normal;
-	font-style: normal;
 }
 .icon-android {
 	position: absolute;
@@ -107,8 +107,10 @@ a {
 	transition: all 0.3s;
 }
 .md-content {
+	position: relative;
+	overflow: hidden;
 	padding: 30px;
-	border-radius: 5px;
+	border-radius: 8px;
 	background: #8C8177;
 	text-align: center;
 }
@@ -121,6 +123,11 @@ a {
 	color: #F2F2F2;
 	text-transform: uppercase;
 	font-weight: bold;
+	cursor: pointer;
+	-webkit-transition: background 0.5s ease-in;
+	-moz-transition: background 0.5s ease-in;
+	-o-transition: background 0.5s ease-in;
+	transition: background 0.5s ease-in;
 }
 button.md-close {
 	position: absolute;
@@ -134,7 +141,6 @@ button.md-close {
 .md-content > button:hover,
 .md-content > button.zeroclipboard-is-hover {
 	background: #362415;
-	cursor: pointer;
 }
 .md-show {
 	visibility: visible;
