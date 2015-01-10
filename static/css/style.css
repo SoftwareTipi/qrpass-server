@@ -91,8 +91,6 @@ a {
 	-ms-transform: translateX(-50%) translateY(-50%);
 	-o-transform: translateX(-50%) translateY(-50%);
 	transform: translateX(-50%) translateY(-50%);
-
-	backface-visibility: hidden;
 }
 .md-overlay {
 	position: fixed;
@@ -114,7 +112,7 @@ a {
 	background: #8C8177;
 	text-align: center;
 }
-.md-content > button {
+.md-show .md-content > button {
 	margin: 5px;
 	padding: 6px 8px;
 	border: none;
@@ -164,7 +162,6 @@ button.md-close {
 	background: #F2F2F2;
 }
 /* Modal window effect */
-
 .md-show.md-effect ~ .container {
 	overflow: hidden;
 	height: 100%;
