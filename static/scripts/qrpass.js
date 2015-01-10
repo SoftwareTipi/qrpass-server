@@ -1,6 +1,6 @@
 /* global window,document,QRCode,sessionID,ActiveXObject,XMLHttpRequest,alert,console,setTimeout,Uint32Array,CryptoJS,io,ZeroClipboard */
 var datatable = document.getElementById("data");
-var key, iv;
+var key;
 // Helpers
 function getRandomString(size) {
 	var text = "", possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -26,14 +26,10 @@ function hideModal() {
 	modal.className = modal.className.replace(' md-show','');
 }
 function makeQRCode(clientID) {
-	if(clientID)
-		makeQRCode.clientID = clientID;
-	var salt = CryptoJS.lib.WordArray.random(32);
-	iv = CryptoJS.lib.WordArray.random(16);
-	var passPhrase = getRandomString(16);
-	if(makeQRCode.code) {
+	if(clientID) makeQRCode.clientID = clientID;
+	if(makeQRCode.code)
 		makeQRCode.code.clear();
-	}	else {
+	else {
 		makeQRCode.code = new QRCode("qrcode", {
 			colorDark: '#2e241e',
 			colorLight : '#f2f2f2',
@@ -42,17 +38,16 @@ function makeQRCode(clientID) {
 			correctLevel : QRCode.CorrectLevel.M
 		});
 	}
-	makeQRCode.code.makeCode(makeQRCode.clientID + "\n" + salt + "\n" + iv + "\n" + passPhrase);
+	key = CryptoJS.lib.WordArray.random(32);
+	makeQRCode.code.makeCode(makeQRCode.clientID + "\n" + key.toString(CryptoJS.enc.Base64));
 	document.getElementById("qrcode").className =
 		document.getElementById("qrcode").className.replace('\ qrcode-hide','');
-	key = CryptoJS.PBKDF2(
-		passPhrase,
-		salt,
-		{ keySize: 8, iterations: 1000 });
 }
 function decrypt(cipherText) {
-	var cipherParams = CryptoJS.lib.CipherParams.create({
-		ciphertext: CryptoJS.enc.Base64.parse(cipherText)});
+	cipherText = cipherText.split('|');
+	var iv = CryptoJS.enc.Base64.parse(cipherText[0]);
+	var encrypted = CryptoJS.enc.Base64.parse(cipherText[1]);
+	var cipherParams = CryptoJS.lib.CipherParams.create({ ciphertext: encrypted });
 	var decrypted = CryptoJS.AES.decrypt(
 		cipherParams,
 		key,
