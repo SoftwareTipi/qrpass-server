@@ -20,12 +20,12 @@ app.set('views', path.join(__dirname, 'views'));
 // express routes
 app.get('/', function (req, res) {
 	res.render('index');
-	res.sendStatus(200);
 });
 
 app.put('/pipe', function (req) {
 	var id = req.body.qrpass_id;
 	io.sockets.connected[id].emit('qrpass_data', req.body.qrpass_data);
+	res.sendStatus(200);
 });
 
 // start server
