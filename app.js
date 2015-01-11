@@ -24,8 +24,12 @@ app.get('/', function (req, res) {
 
 app.put('/pipe', function (req, res) {
 	var id = req.body.qrpass_id;
-	io.sockets.connected[id].emit('qrpass_data', req.body.qrpass_data);
-	res.sendStatus(200);
+	if (io.sockets.connected[id]) {
+		io.sockets.connected[id].emit('qrpass_data', req.body.qrpass_data);
+		res.sendStatus(200);
+	} else {
+		res.sendStatus(400);
+	}
 });
 
 // start server
