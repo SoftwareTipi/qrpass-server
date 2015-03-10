@@ -38,6 +38,24 @@ a {
 	-o-transform: translateX(-50%) translateY(-100%);
 	transform: translateX(-50%) translateY(-100%);
 }
+
+.help_btn {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    display: block;
+    margin: 0;
+    border: none;
+    background: none;
+    font-size: 80px;
+    font-family: monospace;
+    cursor: pointer;
+    -webkit-transform: translateY(-50%) rotate(-90deg) translateY(-100%);
+    -moz-transform: translateY(-50%) rotate(-90deg) translateY(-100%);
+    -ms-transform: translateY(-50%) rotate(-90deg) translateY(-100%);
+    -o-transform: translateY(-50%) rotate(-90deg) translateY(-100%);
+    transform: translateY(-50%) rotate(-90deg) translateY(-100%);
+}
 /* qrcode */
 .qrcode-wrap {
 	position: absolute;
@@ -85,6 +103,8 @@ a {
 	z-index: 2000;
 	visibility: hidden;
 	max-width: 630px;
+    overflow: auto;
+    max-height: 100%;
 	height: auto;
 	-webkit-transform: translateX(-50%) translateY(-50%);
 	-moz-transform: translateX(-50%) translateY(-50%);
@@ -111,6 +131,13 @@ a {
 	border-radius: 8px;
 	background: #8C8177;
 	text-align: center;
+}
+
+.md-content p, .md-content ol, .md-content ul {
+    text-align: left;
+}
+.md-content a {
+    font-weight: bold;
 }
 .md-show .md-content > button {
 	margin: 5px;

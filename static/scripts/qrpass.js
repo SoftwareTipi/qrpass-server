@@ -9,9 +9,12 @@ function makeCopyButton(element) {
 		} );
 	} );
 }
-function hideModal() {
-	var modal = document.getElementById("modal-1");
-	modal.className = modal.className.replace(' md-show','');
+function hideModal(id) {
+    var modal = document.getElementById("modal-" + id);
+    modal.className = modal.className.replace(' md-show', '');
+}
+function showModal(id) {
+    document.getElementById("modal-" + id).className += " md-show";
 }
 function makeQRCode(clientID) {
 	if (clientID) makeQRCode.clientID = clientID;
@@ -57,7 +60,7 @@ function displayCreds(creds) {
 		element.style.visibility = "visible";
 		makeCopyButton(element);
 	}
-	document.getElementById("modal-1").className += "\ md-show";
+	showModal(1);
 }
 function processData(response) {
 	if (response !== "") {

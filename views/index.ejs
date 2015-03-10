@@ -9,17 +9,61 @@
 
 	<div class="md-modal md-effect" id="modal-1">
 		<div class="md-content">
-			<button class="md-close" onclick="hideModal()">&#xea0f;</button>
+            <button class="md-close" onclick="hideModal(1)">&#xea0f;</button>
 			<button id="copy-button-userName">Copy username to Clipboard</button><br>
 			<button id="copy-button-password">Copy password to Clipboard</button><br>
 		</div>
 	</div>
 	<div class="md-overlay"></div>
 
-	<div class="container" id="container">
+    <div class="md-modal md-effect" id="modal-2">
+        <div class="md-content">
+            <button class="md-close" onclick="hideModal(2)">&#xea0f;</button>
+            <h2>General note</h2>
+
+            <p>The application works as KeePass2Android plugin and allows user to send credintials securely
+                between KeePass2Android and browser using QRCode and server assistance as medium for exchanging
+                encryption secrets and encrypted data</p>
+
+            <p>All communication is secured with RSA encryption and random generated secure key exchanged by QR Code.
+                There are plans to switch RSA with some asymetric encryption algorithm to hinder MITM attacks</p>
+
+            <h2>Alpha note</h2>
+
+            <p>The app is still in early alpha/development stage, so please forgive any incoviniences in usage.</p>
+
+            <h2>Quick start</h2>
+            <ol>
+                <li>
+                    Download and install <a href="/apk/android.apk">APK</a><br/>
+                    You will have to allow device to install unsigned applications, since this release is highly
+                    unofficial and unsigned at the moment
+                </li>
+                <li>Enable plugin in KeePass2Android settings.</li>
+                <li>Open some user credintials entry and select to use it with QRPass in menu</li>
+                <li>Scan QRcode from your browser</li>
+                <li>You should receive username and password in your browser</li>
+            </ol>
+
+            <h2>Special thanks to:</h2>
+            <ul>
+                <li><a href="https://code.google.com/p/crypto-js/">CryptoJS</a> - for cryptographic library</li>
+                <li><a href="https://code.google.com/p/zeroclipboard/">ZeroClipboard</a> - for copy/paste flash library</li>
+                <li><a href="https://nodejs.org/">Nods.js</a> - for... Node.JS</li>
+                <li><a href="http://expressjs.com/">Express.js</a> - for... Express.JS</li>
+                <li><a href="http://socket.io/">Socket.IO</a> - for super easy websocket abstraction</li>
+                <li><a href="https://icomoon.io/">IcoMoon</a> - for super easy icon-font manager and such fonts library</li>
+                <li><a href="https://github.com/davidshimjs/qrcodejs">davidshimjs</a> - for qrcode generation js library</li>
+            </ul>
+        </div>
+    </div>
+    <div class="md-overlay"></div>
+
+    <div class="container" id="container">
 		<div class="qrcode-wrap">
 			<div class="qrcode qrcode-hide" id="qrcode">
-				<a href="/apk/android.apk" class="icon-android">&#xeac1;</a>
+                <a href="/apk/android.apk" class="icon-android">&#xeac1;</a>
+                <button class="help_btn" onclick="showModal(2)">?</button>
 			</div>
 		</div>
 	</div>
@@ -28,7 +72,7 @@
 	<script type="text/javascript" src="/scripts/enc-base64.js"></script>
 	<script type="text/javascript" src="/scripts/pbkdf2.js"></script>
 	<script type="text/javascript" src="/scripts/qrcode.min.js"></script>
-	<script src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
 	<script type="text/javascript" src="/ZeroClipboard.js"></script>
 	<script type="text/javascript" src="scripts/qrpass.js"></script>
 </body>
