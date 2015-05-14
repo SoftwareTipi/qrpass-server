@@ -47,19 +47,23 @@ function decrypt(cipherText) {
 }
 // Main logic
 function displayCreds(creds) {
-	var element;
-	if ("userName" in creds) {
-		element = document.getElementById("copy-button-userName");
-		element.setAttribute("data-clipboard-text", creds.userName);
-		element.style.visibility = "visible";
-		makeCopyButton(element);
-	}
-	if ("password" in creds) {
-		element = document.getElementById("copy-button-password");
-		element.setAttribute("data-clipboard-text", creds.password);
-		element.style.visibility = "visible";
-		makeCopyButton(element);
-	}
+    var dataTable = document.getElementById("data"), row, col;
+	for (var element in creds) if (creds[element] !== "") {
+        row = document.createElement('tr');
+        // name
+        col = document.createElement("td");
+        col.innerHTML = element;
+        row.appendChild(col);
+        // copy button
+        col = document.createElement("td");
+        var button = document.createElement("button");
+        button.innerHTML = 'Copy!';
+        button.setAttribute('data-clipboard-text',creds[element]);
+        makeCopyButton(button);
+        col.appendChild(button);
+        row.appendChild(col);
+        dataTable.appendChild(row);
+    }
 	showModal(1);
 }
 function processData(response) {
