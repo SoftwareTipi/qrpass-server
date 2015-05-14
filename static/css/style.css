@@ -84,7 +84,7 @@ a {
 	position: fixed;
 	top: 50%;
 	left: 50%;
-    width: 50%;
+    width: 75%;
 	z-index: 2000;
 	visibility: hidden;
 	max-width: 630px;
@@ -121,20 +121,21 @@ a {
 	text-align: center;
 }
 
-.md-content p, .md-content ol, .md-content ul {
+.md-content p {
     text-align: justify;
-    font-weight: bold;
+}
+.md-content ol, .md-content ul {
+    text-align: left;
 }
 
 .md-content h1 {
     text-align: center;
-    padding: 0.4em;
     letter-spacing: 0.2em;
     font-weight: 200;
     font-size: 2.4em;
     opacity: 0.8;
 }
-.md-show .md-content > button {
+.md-content > button {
     margin: 20px;
     padding: 10px 20px;
 	border: none;
