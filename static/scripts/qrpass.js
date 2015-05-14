@@ -3,14 +3,14 @@ var key;
 // Helpers
 function makeCopyButton(element) {
 	var client = new ZeroClipboard(element);
-	client.on( "ready", function(readyEvent) {
+	client.on( "ready", function() {
 		client.on( "aftercopy", function(event) {
 			event.target.innerHTML = "Coppied!";
 		} );
 	} );
 }
-function hideModal(id) {
-    var modal = document.getElementById("modal-" + id);
+function hideModal() {
+    var modal = document.getElementsByClassName("md-show")[0];
     modal.className = modal.className.replace(' md-show', '');
 }
 function showModal(id) {
