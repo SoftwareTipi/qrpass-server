@@ -19,46 +19,41 @@
         <div class="md-content">
             <h1>About</h1>
 
-            <p>The application works as KeePass2Android plugin and allows user to send credentials securely
-                between KeePass2Android and browser using QRCode and server assistance as medium for exchanging
-                encryption secrets and encrypted data</p>
+            <p>The application works as KeePass2Android 'tunnel' and allows user to send credentials securely
+                between KeePass2Android and web browser using QRCode as medium for exchanging
+                encryption secrets and server to pass through it encrypted data</p>
 
-            <p>All communication is secured with RSA encryption and random generated secure key exchanged by QR Code.
-                There are plans to switch RSA with some asymmetric encryption algorithm to hinder
-                MiTM (Man in The Middle) attacks</p>
-
+            <p>All communication is secured with RSA encryption and random generated secure key exchanged by QRCode.</p>
             
-            <em>The app is still in early alpha/development stage, so please forgive any inconveniences in usage.</em>
-            <button class="md-close" onclick="hideModal(2)">&#xea0f;</button>
+            <p><em>The app is still in early alpha/development stage, so please forgive any inconveniences in usage.
+                </em></p>
+            <br/><button class="md-close" onclick="hideModal()">CLOSE!</button>
         </div>
     </div>
     <div class="md-modal md-effect" id="modal-3">
         <div class="md-content">
-            <button class="md-close" onclick="hideModal(3)">&#xea0f;</button>
             <h1>Quick start</h1>
             <ol>
-                <li>
-                    Download and install <a href="/apk/android.apk">APK</a>
-                </li>
+                <li>Download and install <a href="/apk/android.apk">APK</a></li>
                 <li>Enable plugin in KeePass2Android settings.</li>
                 <li>Open some user credentials entry in KeePass2Android and select to use it with QRPass in menu</li>
                 <li>Scan QRCode from this page</li>
                 <li>You should receive username and password in your browser</li>
             </ol>
+            <br/><button class="md-close" onclick="hideModal()">CLOSE!</button>
         </div>
     </div>
     <div class="md-modal md-effect" id="modal-4">
         <div class="md-content">
-            <button class="md-close" onclick="hideModal(4)">&#xea0f;</button>
             <h1>Download</h1>
-            <p>At the moment application is not officially published so please use direct link:</p>
-            <a href="/apk/android.apk">Android apk</a>
+            <p>At the moment application is not officially published, so please use direct link: <a href="/apk</android.apk">Android apk</a></p>
+
+            <br/><button class="md-close" onclick="hideModal()">CLOSE!</button>
         </div>
     </div>
     <div class="md-modal md-effect" id="modal-5">
         <div class="md-content">
-            <button class="md-close" onclick="hideModal(5)">&#xea0f;</button>
-        <h1>Special thanks to:</h1>
+            <h1>Special thanks to:</h1>
             <ul>
                 <li><a href="https://code.google.com/p/crypto-js/">CryptoJS</a> - for cryptographic library</li>
                 <li><a href="https://code.google.com/p/zeroclipboard/">ZeroClipboard</a> - for copy/paste flash library</li>
@@ -68,6 +63,7 @@
                 <li><a href="https://icomoon.io/">IcoMoon</a> - for icon-font manager and fonts library</li>
                 <li><a href="https://github.com/davidshimjs/qrcodejs">davidshimjs</a> - for qrcode JavScript library</li>
             </ul>
+            <br/><button class="md-close" onclick="hideModal()">CLOSE!</button>
         </div>
     </div>
 
