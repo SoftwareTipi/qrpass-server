@@ -1,13 +1,12 @@
 /* global window,document,QRCode,sessionID,console,CryptoJS,io,ZeroClipboard */
 var key;
-// Helpers
 function makeCopyButton(element) {
 	var client = new ZeroClipboard(element);
-	client.on( "ready", function() {
-		client.on( "aftercopy", function(event) {
-			event.target.innerHTML = "Coppied!";
-		} );
-	} );
+	//client.on( "ready", function() {
+	//	client.on( "aftercopy", function(event) {
+	//		event.target.innerHTML = "Coppied!";
+	//	} );
+	//} );
 }
 function hideModal() {
     var modal = document.getElementsByClassName("md-show")[0];
@@ -52,12 +51,12 @@ function displayCreds(creds) {
         row = document.createElement('tr');
         // name
         col = document.createElement("td");
-        col.innerHTML = element;
+        col.innerHTML = element + ':';
         row.appendChild(col);
         // copy button
         col = document.createElement("td");
         var button = document.createElement("button");
-        button.innerHTML = 'Copy!';
+        button.innerHTML = 'COPY';
         button.setAttribute('data-clipboard-text',creds[element]);
         makeCopyButton(button);
         col.appendChild(button);
