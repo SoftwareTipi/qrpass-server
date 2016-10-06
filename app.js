@@ -1,14 +1,15 @@
 /* global require, __dirname, process, console */
-var express = require("express"),
-	 app = express(),
-	 bodyParser = require('body-parser'),
-	 path = require('path'),
-	 io = require('socket.io')(http),
-	 http = require('http'),
-	 favicon = require('serve-favicon');
+const express = require("express");
+const app = express();
+const bodyParser = require('body-parser');
+const path = require('path');
+const http = require('http');
+const io = require('socket.io')(http);
+const favicon = require('serve-favicon');
+const browserify = require('browserify-middleware');
 
 // middleware
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(favicon(path.join(__dirname, 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'static')));
 app.use(express.static(path.join(__dirname, 'node_modules/zeroclipboard/dist')));
@@ -21,6 +22,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.get('/', function (req, res) {
 	res.render('index');
 });
+
+app.get('/index_budle.js', browserify('./browserify/qrpass.js'));
 
 app.put('/pipe', function (req, res) {
 	var id = req.body.qrpass_id;
@@ -35,7 +38,7 @@ app.put('/pipe', function (req, res) {
 // start server
 var server = http.createServer(app);
 var port = process.env.PORT || 5000;
-server.listen(port, function() {
+server.listen(port, function () {
 	console.log("listening at port: " + port);
 });
 io.listen(server);

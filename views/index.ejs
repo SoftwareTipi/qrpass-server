@@ -87,12 +87,18 @@
 		</div>
 	</div>
 
-	<script type="text/javascript" src="/scripts/aes.js"></script>
-	<script type="text/javascript" src="/scripts/enc-base64.js"></script>
-	<script type="text/javascript" src="/scripts/pbkdf2.js"></script>
-	<script type="text/javascript" src="/scripts/qrcode.min.js"></script>
-	<script type="text/javascript" src="/socket.io/socket.io.js"></script>
-	<script type="text/javascript" src="/ZeroClipboard.js"></script>
-	<script type="text/javascript" src="scripts/qrpass.js"></script>
+	<script type="text/javascript" src="/index_budle.js"></script>
+    <script>
+        function hideModal(id) {
+            if (typeof id !== 'undefined')
+                var modal = document.getElementById("modal-" + id);
+            else
+                modal = document.getElementsByClassName("md-show")[0];
+            modal.className = modal.className.replace(' md-show', '');
+        }
+        function showModal(id) {
+            document.getElementById("modal-" + id).className += " md-show";
+        }
+    </script>
 </body>
 </html>
