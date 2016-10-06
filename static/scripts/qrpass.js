@@ -1,6 +1,9 @@
-/* global window,document,QRCode,sessionID,console,CryptoJS,io,ZeroClipboard */
-function hideModal() {
-	var modal = document.getElementsByClassName("md-show")[0];
+/* global ZeroClipboard */
+function hideModal(id) {
+	if (typeof id !== 'undefined')
+		var modal = document.getElementById("modal-" + id);
+	else
+		modal = document.getElementsByClassName("md-show")[0];
 	modal.className = modal.className.replace(' md-show', '');
 }
 function showModal(id) {
@@ -41,7 +44,7 @@ function showModal(id) {
 	}
 
 	function decrypt(cipherText) {
-		cipherText = cipherText.split('|');
+		cipherText = cipherText.replace("\n", "").split('|');
 		var iv = CryptoJS.enc.Base64.parse(cipherText[0]);
 		var encrypted = CryptoJS.enc.Base64.parse(cipherText[1]);
 		var cipherParams = CryptoJS.lib.CipherParams.create({ciphertext: encrypted});
@@ -54,11 +57,11 @@ function showModal(id) {
 
 	// Main logic
 	function displayCreds(creds) {
-		var dataTable = document.getElementById("data"), row, col;
+		var dataTable = document.getElementById("data");
 		for (var element in creds) if (creds[element] !== "") {
-			row = document.createElement('tr');
+			var row = document.createElement('tr');
 			// name
-			col = document.createElement("td");
+			var col = document.createElement("td");
 			col.innerHTML = element + ':';
 			row.appendChild(col);
 			// copy button
@@ -77,8 +80,8 @@ function showModal(id) {
 	function processData(response) {
 		if (response !== "") {
 			try {
-				response = response.replace("\n", "");
-				var dataJSON = JSON.parse(decrypt(response));
+				var decrypted = decrypt(response);
+				var dataJSON = JSON.parse(decrypted);
 				if ("credentials" in dataJSON) {
 					displayCreds(dataJSON.credentials);
 				}
