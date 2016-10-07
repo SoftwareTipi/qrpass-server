@@ -1,4 +1,5 @@
 /* global ZeroClipboard */
+import 'core-js/web/dom-collections';
 import 'core-js/fn/array/for-each';
 import 'core-js/fn/array/map';
 
@@ -36,10 +37,10 @@ function displayCreds(creds) {
 		row.appendChild(colBtn);
 		dataTable.appendChild(row);
 	});
-	showModal(1);
+	showModal('data');
 }
 
-window.onload = function () {
+function connectSocketIO() {
 	var socket = io.connect(window.location.host);
 
 	var key;
@@ -48,4 +49,26 @@ window.onload = function () {
 		QRMaker(clientId, key);
 	});
 	socket.on('qrpass_data', data => processData(data, key, displayCreds));
+}
+
+function hideModals() {
+	for (var modal of document.getElementsByClassName("md-show"))
+		modal.classList.remove('md-show');
+}
+
+function showModal(id) {
+	document.getElementById(`modal-${id}`).classList.add('md-show');
+}
+
+function hookUpListeners() {
+	for (let btn of document.getElementsByClassName('md-close'))
+		btn.onclick = hideModals;
+
+	for (let btn of document.querySelectorAll('[md-show]'))
+		btn.onclick = () => showModal(btn.getAttribute('md-show'));
+}
+window.onload = function () {
+	connectSocketIO();
+	hookUpListeners();
+	displayCreds({user: 'sad'});
 };

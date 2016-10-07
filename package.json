@@ -10,17 +10,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-preset-react": "^6.16.0",
     "babelify": "^7.3.0",
+    "body-parser": "^1.10.0",
     "browserify-middleware": "^7.1.0",
-	"body-parser": "^1.10.0",
-	"ejs": "^1.0.0",
-	"express": "^4.10.6",
-	"serve-favicon": "^2.2.0",
-	"socket.io": "^1.2.1",
-	"socket.io-client": "latest",
-	"zeroclipboard": "^2.2.0",
-	"crypto-js": "^3.1.6",
-	"qrcode2": "^1.2.3"
+    "crypto-js": "^3.1.6",
+    "ejs": "^1.0.0",
+    "express": "^4.10.6",
+    "qrcode2": "^1.2.3",
+    "serve-favicon": "^2.2.0",
+    "socket.io": "^1.2.1",
+    "socket.io-client": "^1.2.1",
+    "zeroclipboard": "^2.2.0"
   },
   "browserify": {
     "transform": [

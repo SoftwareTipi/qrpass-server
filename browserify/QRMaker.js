@@ -15,6 +15,5 @@ export default function makeQRCode(clientID, key) {
 		});
 	}
 	displayedQRCode.makeCode(clientID + "\n" + key.toString(Base64));
-	document.getElementById("qrcode").className =
-		document.getElementById("qrcode").className.replace('\ qrcode-hide', '');
+	document.getElementById("qrcode").classList.remove('qrcode-hide');
 }

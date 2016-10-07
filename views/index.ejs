@@ -1,104 +1,93 @@
 <!doctype html>
 <html>
 <head>
-	<meta name="robots" content="noindex">
-	<title>QRPass</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <meta name="robots" content="noindex">
+    <title>QRPass</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 
-	<div class="md-modal md-effect" id="modal-1">
-		<div class="md-content">
-            <table id="data"></table>
-            <br/><button class="md-close" onclick="hideModal()">CLOSE!</button>
-		</div>
-	</div>
-
-    <div class="md-modal md-effect" id="modal-2">
-        <div class="md-content">
-            <h1>About</h1>
-
-            <p>The application works as KeePass2Android 'tunnel' and allows user to send credentials securely
-                between KeePass2Android and web browser using QRCode as medium for exchanging
-                encryption secrets and server to pass through it encrypted data</p>
-
-            <p>All communication is secured with RSA encryption and random generated secure key exchanged by QRCode.</p>
-            
-            <p><em>The app is still in early alpha/development stage, so please forgive any inconveniences in usage.
-                </em></p>
-            <br/><button class="md-close" onclick="hideModal()">CLOSE!</button>
-        </div>
+<div class="md-modal md-effect" id="modal-data">
+    <div class="md-content">
+        <table id="data"></table>
+        <br/>
+        <button class="md-close">CLOSE</button>
     </div>
-    <div class="md-modal md-effect" id="modal-3">
-        <div class="md-content">
-            <h1>Quick start</h1>
-            <ol>
-                <li>Download and install <a href="/apk/android.apk">APK</a></li>
-                <li>Enable plugin in KeePass2Android settings.</li>
-                <li>Open some user credentials entry in KeePass2Android and select to use it with QRPass in menu</li>
-                <li>Scan QRCode from this page</li>
-                <li>You should receive username and password in your browser</li>
-            </ol>
-            <br/><button class="md-close" onclick="hideModal()">CLOSE!</button>
-        </div>
+</div>
+
+<div class="md-modal md-effect" id="modal-about">
+    <div class="md-content">
+        <h1>About</h1>
+
+        <p>The application works as KeePass2Android 'tunnel' and allows user to send credentials securely
+            between KeePass2Android and web browser using QRCode as medium for exchanging
+            encryption secrets and server to pass through it encrypted data</p>
+
+        <p>All communication is secured with RSA encryption and random generated secure key exchanged by QRCode.</p>
+
+        <p><em>The app is still in early alpha/development stage, so please forgive any inconveniences in usage.
+            </em></p>
+        <br/>
+        <button class="md-close">CLOSE</button>
     </div>
-    <div class="md-modal md-effect" id="modal-4">
-        <div class="md-content">
-            <h1>Download</h1>
-            <p>At the moment application is not officially published, so please use direct link: <a href="/apk/android.apk">Android apk</a></p>
-
-            <br/><button class="md-close" onclick="hideModal()">CLOSE!</button>
-        </div>
+</div>
+<div class="md-modal md-effect" id="modal-qs">
+    <div class="md-content">
+        <h1>Quick start</h1>
+        <ol>
+            <li>Download and install <a href="/apk/android.apk">APK</a></li>
+            <li>Enable plugin in KeePass2Android settings.</li>
+            <li>Open some user credentials entry in KeePass2Android and select to use it with QRPass in menu</li>
+            <li>Scan QRCode from this page</li>
+            <li>You should receive username and password in your browser</li>
+        </ol>
+        <br/>
+        <button class="md-close">CLOSE</button>
     </div>
-    <div class="md-modal md-effect" id="modal-5">
-        <div class="md-content">
-            <h1>Special thanks to:</h1>
-            <ul>
-                <li><a href="https://code.google.com/p/crypto-js/">CryptoJS</a> - for cryptographic library</li>
-                <li><a href="https://code.google.com/p/zeroclipboard/">ZeroClipboard</a> - for copy/paste flash library</li>
-                <li><a href="https://nodejs.org/">Nods.js</a> - for server-side awesomeness</li>
-                <li><a href="http://expressjs.com/">Express.js</a> - for easy HTTP serving</li>
-                <li><a href="http://socket.io/">Socket.IO</a> - for websocket abstraction</li>
-                <li><a href="https://icomoon.io/">IcoMoon</a> - for icon-font manager and fonts library</li>
-                <li><a href="https://github.com/davidshimjs/qrcodejs">davidshimjs</a> - for qrcode JavScript library</li>
-            </ul>
-            <br/><button class="md-close" onclick="hideModal()">CLOSE!</button>
-        </div>
+</div>
+<div class="md-modal md-effect" id="modal-download">
+    <div class="md-content">
+        <h1>Download</h1>
+        <p>At the moment application is not officially published, so please use direct link: <a href="/apk/android.apk">Android apk</a></p>
+
+        <br/>
+        <button class="md-close">CLOSE</button>
     </div>
-
-
-
-    <div class="md-overlay"></div>
-
-    <div id="menu">
-        <ul class="menu_list">
-            <li class="menu_el"><a onclick="showModal(2)">ABOUT</a></li>
-            <li class="menu_el"><a onclick="showModal(3)">QUICK START</a></li>
-            <li class="menu_el"><a onclick="showModal(4)">DOWNLOAD</a></li>
-            <li class="menu_el"><a onclick="showModal(5)">THANKS</a></li>
+</div>
+<div class="md-modal md-effect" id="modal-thanks">
+    <div class="md-content">
+        <h1>Special thanks to:</h1>
+        <ul>
+            <li><a href="https://code.google.com/p/crypto-js/">CryptoJS</a> - for cryptographic library</li>
+            <li><a href="https://code.google.com/p/zeroclipboard/">ZeroClipboard</a> - for copy/paste flash library</li>
+            <li><a href="https://nodejs.org/">Nods.js</a> - for server-side awesomeness</li>
+            <li><a href="http://expressjs.com/">Express.js</a> - for easy HTTP serving</li>
+            <li><a href="http://socket.io/">Socket.IO</a> - for websocket abstraction</li>
+            <li><a href="https://icomoon.io/">IcoMoon</a> - for icon-font manager and fonts library</li>
+            <li><a href="https://github.com/davidshimjs/qrcodejs">davidshimjs</a> - for qrcode JavScript library</li>
         </ul>
+        <br/>
+        <button class="md-close">CLOSE</button>
     </div>
+</div>
 
-    <div class="container" id="container">
-		<div class="qrcode-wrap">
-			<div class="qrcode qrcode-hide" id="qrcode">
-                <!--<button class="help_btn" onclick="showModal(2)">?</button>-->
-			</div>
-		</div>
-	</div>
+<div class="md-overlay"></div>
 
-	<script type="text/javascript" src="/index_budle.js"></script>
-    <script>
-        function hideModal(id) {
-            if (typeof id !== 'undefined')
-                var modal = document.getElementById("modal-" + id);
-            else
-                modal = document.getElementsByClassName("md-show")[0];
-            modal.className = modal.className.replace(' md-show', '');
-        }
-        function showModal(id) {
-            document.getElementById("modal-" + id).className += " md-show";
-        }
-    </script>
+<div id="menu">
+    <ul class="menu_list">
+        <li class="menu_el"><a md-show="about">ABOUT</a></li>
+        <li class="menu_el"><a md-show="qs">QUICK START</a></li>
+        <li class="menu_el"><a md-show="download">DOWNLOAD</a></li>
+        <li class="menu_el"><a md-show="thanks">THANKS</a></li>
+    </ul>
+</div>
+
+<div class="container" id="container">
+    <div class="qrcode-wrap">
+        <div class="qrcode qrcode-hide" id="qrcode"></div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/index_budle.js"></script>
 </body>
 </html>
